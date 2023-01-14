@@ -1,0 +1,76 @@
+<html>
+    <head>
+        <title>Home</title>
+        {% load static %}
+        <style>
+            .center{
+                position:absolute;
+                top:50%;
+                left:50%;
+                transform: translate(-50%,-50%);
+            }
+            body {
+                background-color: powderblue;
+            }
+
+        </style>
+        <link rel="stylesheet" href= '{%static 'css/styles.css'%}'>
+        
+    </head>    
+<body>
+    {% block content %}
+            
+            <div class="center"> 
+                <h2>
+                    Product Register 
+                </h2> 
+                
+                <form action ="addData" method="POST">
+                {% csrf_token %}
+                Name: <input type="text" name="name" placeholder="enter name"><br>
+                Age: <input type="text" name="age" placeholder="enter field"><br>
+                Address: <input type="text" name="address" placeholder="enter field"><br>
+                Contact: <input type="text" name="contact" placeholder="enter field"><br>
+                Email: <input type="text" name="email" placeholder="enter field"><br>
+                <input type="submit" value="submit"><br><br>
+                <span><input type="reset" value="clear"><br></span>
+                </form>
+                <img src= {% static 'image\image 1.jpg' %} alt="crackers">
+            
+                 
+            </div>
+            <div>
+                View Details <br>
+             <thead>   
+                <tr>
+                    <th><b>S.no</b></th> 
+                    <th><b>Name</b></th> 
+                    <th><b>Age</b></th>
+                    <th><b>Address</b></th>
+                    <th><b>Contact</b></th>                 
+                    <th><b>Email</b></th>
+                    <th><b>Update</b></th>
+                    <th><b>Delete</b></th>
+             
+                </tr>
+            </thead>
+            {% for data in accessdata%}   
+            <tbody>
+                <tr>
+                    <td>{{forloop.counter}}</td> 
+                    <td>{{data.Name}}</td> 
+                    <td>{{data.Age}}</td>
+                    <td>{{data.Address}}</td>
+                    <td>{{data.Contact}}</td>                 
+                    <td>{{data.Email}}</td> 
+                    <td><a href="updateData/{{data.id}}"> Update</a></td>
+                    <td><a href="deleteData/{{data.id}}"> Delete</a></td>
+                </tr>
+
+            </tbody>
+            {% endfor %}
+            </div>    
+              
+    {% endblock %}
+</body>
+</html>

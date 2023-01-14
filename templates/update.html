@@ -1,0 +1,45 @@
+
+<html>
+    <head>
+        <title>Home</title>
+        {% load static %}
+        <style>
+            .center{
+                position:absolute;
+                top:50%;
+                left:50%;
+                transform: translate(-50%,-50%);
+            }
+            body {
+                background-color: powderblue;
+            }
+
+        </style>
+        <link rel="stylesheet" href= '{%static 'css/styles.css'%}'>
+        
+    </head>    
+<body>
+    {% block content %}
+            
+            <div class="center"> 
+                <h2>
+                    Update data 
+                </h2> 
+                
+                <form action ="/updateData/{{data.id}}" method="POST">
+                {% csrf_token %}
+                Name: <input type="text" name="name" value= "{{data.Name}}" placeholder="enter name"><br>
+                Age: <input type="text" name="age" value= "{{data.Age}}" placeholder="enter field"><br>
+                Address: <input type="text" name="address" value= "{{data.Address}}" placeholder="enter field"><br>
+                Contact: <input type="text" name="contact" value= "{{data.Contact}}" placeholder="enter field"><br>
+                Email: <input type="text" name="email" value= "{{data.Email}}" placeholder="enter field"><br>
+                <input type="submit" value="update"><br><br>
+                </form>
+                <img src= {% static 'image\image 1.jpg' %} alt="crackers">
+            
+                 
+            </div>
+            
+    {% endblock %}
+</body>
+</html>
